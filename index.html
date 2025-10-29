@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NovaStudio — Modern Product & Agency Landing</title>
+  <meta name="description" content="NovaStudio — modern landing page demo: SaaS, Agency, Portfolio, Pricing, Testimonials, Portfolio, Blog & Contact." />
+  <meta name="author" content="NovaStudio Demo" />
+  <style>
+    /* ===========================
+       NOVA STUDIO — Single File CSS
+       Clean modern variables, responsive layout, animations
+       =========================== */
+
+    :root{
+      --bg: #0b1020;
+      --card: rgba(255,255,255,0.03);
+      --muted: #a9b3c2;
+      --glass: rgba(255,255,255,0.04);
+      --accent: #7c5cff;
+      --accent-2: #00d4ff;
+      --success: #10b981;
+      --danger: #ef4444;
+      --radius: 16px;
+      --container: 1200px;
+      --fw-heading: 700;
+      --fw-body: 400;
+      --glass-border: rgba(255,255,255,0.06);
+    }
+
+    /* Light theme variables */
+    :root.light{
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --muted: #556074;
+      --glass: rgba(2,6,23,0.03);
+      --accent: #5b21b6;
+      --accent-2: #0284c7;
+      --success: #059669;
+      --danger: #dc2626;
+      --glass-border: rgba(2,6,23,0.06);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: radial-gradient(800px 500px at 10% 10%, rgba(124,92,255,0.06), transparent), var(--bg);
+      color: #e7eef8; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      -webkit-font-smoothing:antialiased;
+      padding-bottom:48px;
+    }
+
+    /* Container */
+    .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 20px;}
+
+    /* Header / Navbar */
+    header.site-header{
+      position:fixed;left:0;right:0;top:12px;z-index:70;
+      display:flex;align-items:center;justify-content:center;
+      pointer-events:none;
+    }
+    .nav-wrap{width:100%;max-width:var(--container);display:flex;align-items:center;gap:16px;padding:12px 20px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);backdrop-filter: blur(8px);border:1px solid var(--glass-border);pointer-events:auto;}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .brand .logo{
+      width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:18px;box-shadow:0 6px 18px rgba(2,6,23,0.5);
+    }
+    .brand .name{display:flex;flex-direction:column;font-weight:700;line-height:1}
+    .brand .name span{font-size:12px;color:var(--muted);font-weight:500}
+
+    nav.primary{margin-left:20px;display:flex;gap:12px;align-items:center;margin-right:auto}
+    nav.primary a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600;font-size:14px}
+    nav.primary a:hover{color:var(--accent-2);background:transparent}
+
+    .actions{display:flex;gap:8px;align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
+    .btn.ghost{background:transparent;border:1px solid var(--glass-border);color:var(--muted)}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 10px 24px rgba(13,12,38,0.5)}
+    .icon{width:36px;height:36px;border-radius:10px;background:var(--card);display:inline-grid;place-items:center;color:var(--muted)}
+
+    /* Hamburger for mobile */
+    .hamburger{display:none;padding:8px;border-radius:10px;background:var(--card);cursor:pointer}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:120px 0 60px}
+    @media (max-width:980px){ .hero{grid-template-columns:1fr; padding-top:100px} .nav-wrap{padding:10px} }
+    .hero-left{max-width:720px}
+    .kicker{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg, rgba(124,92,255,0.12), rgba(0,212,255,0.06));color:var(--accent);font-weight:700;font-size:13px;margin-bottom:14px}
+    h1.hero-title{font-size:48px;line-height:1.02;margin:0 0 16px;font-weight:800;letter-spacing:-0.02em}
+    .hero-title .accent-text{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;color:transparent}
+    p.lead{color:var(--muted);font-size:18px;margin:0 0 20px}
+    .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+    .feature-row{display:flex;gap:12px;align-items:center;margin-top:22px}
+    .pillar{background:var(--card);padding:12px;border-radius:12px;display:flex;gap:10px;align-items:center;border:1px solid var(--glass-border)}
+    .pillar strong{font-size:14px}
+    .stats{display:flex;gap:12px;align-items:center;margin-top:18px}
+    .stat{padding:10px 14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid var(--glass-border);text-align:center}
+    .stat span{display:block;font-weight:800;font-size:18px}
+
+    /* Card right column (signup / demo / features) */
+    .hero-right{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:20px;border-radius:14px;border:1px solid var(--glass-border)}
+    .signup{display:flex;flex-direction:column;gap:10px}
+    .signup input{padding:12px;border-radius:10px;border:1px solid var(--glass-border);background:transparent;color:inherit}
+    .small-muted{font-size:13px;color:var(--muted)}
+
+    /* Features grid */
+    .section{padding:70px 0}
+    .section h2{font-size:28px;margin:0 0 18px}
+    .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media (max-width:980px){ .features-grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:640px){ .features-grid{grid-template-columns:1fr} }
+
+    .feature-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:12px;border:1px solid var(--glass-border);display:flex;gap:12px;align-items:flex-start}
+    .feature-card .ic{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#fff;font-weight:800}
+
+    /* Services / pricing / testimonials */
+    .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    @media (max-width:980px){ .services-grid{grid-template-columns:1fr} }
+
+    .pricing-toggle{display:flex;align-items:center;gap:10px;padding:8px;background:var(--card);border-radius:999px;border:1px solid var(--glass-border)}
+    .switch{position:relative;width:44px;height:24px;background:rgba(255,255,255,0.04);border-radius:999px;cursor:pointer;padding:3px}
+    .switch .dot{position:absolute;width:18px;height:18px;border-radius:50%;background:white;top:3px;left:3px;transition:all .25s}
+    .switch.on{background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+    .switch.on .dot{left:23px;background:#fff}
+
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    @media (max-width:980px){ .pricing-grid{grid-template-columns:1fr} }
+
+    .price-card{padding:20px;border-radius:14px;border:1px solid var(--glass-border);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);display:flex;flex-direction:column;gap:12px}
+    .price-card h3{margin:0}
+    .price{font-size:28px;font-weight:800}
+    .price small{display:block;font-size:13px;color:var(--muted)}
+
+    /* Testimonials carousel simple */
+    .testimonials{position:relative}
+    .test-list{display:flex;overflow:hidden;gap:12px;scroll-snap-type:x mandatory}
+    .test-item{min-width:320px;flex:0 0 320px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid var(--glass-border)}
+    .carousel-controls{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:12px}
+
+    /* Portfolio */
+    .portfolio-controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+    .chip{padding:8px 12px;border-radius:999px;background:transparent;border:1px solid var(--glass-border);cursor:pointer;color:var(--muted)}
+    .chip.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;border:none}
+
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:980px){ .portfolio-grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:640px){ .portfolio-grid{grid-template-columns:1fr} }
+
+    .portfolio-card{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--glass-border)}
+    .portfolio-card img{width:100%;height:220px;object-fit:cover;display:block}
+    .portfolio-card .caption{position:absolute;left:12px;bottom:12px;background:linear-gradient(180deg, rgba(2,6,23,0.6), transparent);padding:8px 12px;border-radius:8px;color:#fff;font-weight:700}
+
+    /* Team */
+    .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    @media (max-width:980px){ .team-grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:640px){ .team-grid{grid-template-columns:1fr} }
+    .member{background:var(--card);padding:12px;border-radius:12px;text-align:center;border:1px solid var(--glass-border)}
+
+    /* Blog / newsletter */
+    .newsletter{display:flex;gap:12px;align-items:center}
+    .newsletter input{padding:12px;border-radius:10px;border:1px solid var(--glass-border);background:transparent;color:inherit;flex:1}
+
+    /* FAQ (accordion) */
+    .faq-item{border-bottom:1px solid rgba(255,255,255,0.02);padding:12px 0}
+    .faq-head{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer}
+    .faq-body{max-height:0;overflow:hidden;transition:max-height .36s ease;padding-top:6px;color:var(--muted)}
+    .faq-item.open .faq-body{max-height:200px}
+
+    /* Contact form */
+    .contact-grid{display:grid;grid-template-columns:1fr 420px;gap:20px}
+    @media (max-width:980px){ .contact-grid{grid-template-columns:1fr} }
+    .contact-card{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid var(--glass-border)}
+    input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid var(--glass-border);background:transparent;color:inherit;resize:vertical}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* Footer */
+    footer.site-footer{padding:36px 0;border-top:1px solid rgba(255,255,255,0.02);margin-top:40px;color:var(--muted)}
+
+    /* Utilities */
+    .muted{color:var(--muted)}
+    .center{text-align:center}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    @media (max-width:980px){ .grid-2{grid-template-columns:1fr} }
+
+    /* Small helpers */
+    .mb-8{margin-bottom:8px}
+    .mb-16{margin-bottom:16px}
+    .p-8{padding:8px}
+    .rounded{border-radius:10px}
+
+    /* Animations */
+    .fade-up{opacity:0;transform:translateY(18px);transition:all .6s ease}
+    .fade-up.visible{opacity:1;transform:translateY(0)}
+
+    /* Accessible focus */
+    :focus{outline:2px dashed var(--accent-2);outline-offset:3px}
+
+    /* Responsive header adjustments */
+    @media (max-width:900px){
+      nav.primary{display:none}
+      .hamburger{display:block}
+      .nav-wrap{gap:8px}
+    }
+
+    /* small screens adjust hero font */
+    @media (max-width:520px){
+      h1.hero-title{font-size:28px}
+      .hero{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="site-header">
+    <div class="nav-wrap container" role="navigation" aria-label="Primary Navigation">
+      <a href="#" class="brand" onclick="document.documentElement.scrollTop=0; return false;">
+        <div class="logo" aria-hidden="true">N</div>
+        <div class="name">
+          NovaStudio
+          <span>Design • Product • Web</span>
+        </div>
+      </a>
+
+      <nav class="primary" aria-label="Main">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="actions" role="group" aria-label="Header actions">
+        <button class="btn ghost" id="themeToggle" title="Toggle light/dark" aria-pressed="false">🌙</button>
+        <button class="btn" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+        <div class="hamburger" id="menuToggle" aria-label="Open menu" title="Menu">☰</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section id="home" class="hero container" aria-labelledby="hero-heading">
+      <div class="hero-left">
+        <div class="kicker">Trusted by teams of 10k+</div>
+        <h1 id="hero-heading" class="hero-title">Design & Build <span class="accent-text">delightful</span> digital products</h1>
+        <p class="lead">We create fast, accessible, and beautiful web experiences for startups and enterprise — from marketing sites to full product platforms.</p>
+
+        <div class="hero-ctas">
+          <button class="btn primary" onclick="signup()">Start Free Trial</button>
+          <button class="btn ghost" onclick="document.querySelector('#features').scrollIntoView({behavior:'smooth'})">Explore Features</button>
+        </div>
+
+        <div class="feature-row">
+          <div class="pillar">
+            <div style="width:42px;height:42px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#fff;font-weight:800">⚡</div>
+            <div>
+              <strong>Performance-first</strong>
+              <div class="small-muted">Optimized for speed & SEO</div>
+            </div>
+          </div>
+
+          <div class="pillar">
+            <div style="width:42px;height:42px;border-radius:9px;background:linear-gradient(135deg,#06b6d4,#7c5cff);display:grid;place-items:center;color:#fff;font-weight:800">🔒</div>
+            <div>
+              <strong>Enterprise grade</strong>
+              <div class="small-muted">Security & compliance ready</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats" aria-hidden="true">
+          <div class="stat">
+            <span>1.2M</span>
+            <div class="small-muted">Visitors / mo</div>
+          </div>
+          <div class="stat">
+            <span>120%</span>
+            <div class="small-muted">Faster Time-to-market</div>
+          </div>
+          <div class="stat">
+            <span>99.99%</span>
+            <div class="small-muted">Uptime SLA</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right signup / demo card -->
+      <aside class="hero-right" aria-label="Demo sign up">
+        <div style="display:flex;align-items:center;gap:12px;justify-content:space-between">
+          <div>
+            <div class="small-muted">Get your free demo</div>
+            <div style="font-weight:800;font-size:18px">Start with a 14-day trial</div>
+          </div>
+          <div class="icon">▶</div>
+        </div>
+
+        <form class="signup" onsubmit="event.preventDefault(); signup();">
+          <input type="text" name="name" placeholder="Full name" aria-label="Full name" required />
+          <input type="email" name="email" placeholder="Work email" aria-label="Work email" required />
+          <div style="display:flex;gap:8px">
+            <select name="companySize" aria-label="Company size" style="flex:1;padding:12px;border-radius:10px;border:1px solid var(--glass-border);background:transparent;color:inherit">
+              <option value="">Company size</option>
+              <option>1–10</option>
+              <option>11–50</option>
+              <option>51–200</option>
+              <option>200+</option>
+            </select>
+            <button class="btn primary" type="submit">Book Demo</button>
+          </div>
+          <div class="small-muted">No credit card. Cancel anytime.</div>
+        </form>
+
+        <div style="margin-top:12px;font-size:13px;color:var(--muted)">
+          <strong>Integrations:</strong> Slack • Figma • Notion • Stripe • Vercel
+        </div>
+      </aside>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="section container" aria-labelledby="features-heading">
+      <h2 id="features-heading">Powerful Features</h2>
+      <p class="muted">Everything you need to design, build, and ship modern web experiences.</p>
+
+      <div class="features-grid" style="margin-top:18px">
+        <div class="feature-card fade-up">
+          <div class="ic">⚡</div>
+          <div>
+            <h3>Blazing Performance</h3>
+            <p class="muted">Edge-first architecture and optimized bundles for fast load times.</p>
+          </div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="ic">🎨</div>
+          <div>
+            <h3>Design System</h3>
+            <p class="muted">A component-driven approach with accessible primitives and tokens.</p>
+          </div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="ic">🔐</div>
+          <div>
+            <h3>Secure by default</h3>
+            <p class="muted">Role-based access, SSO, and SOC-compliant practices.</p>
+          </div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="ic">⚙️</div>
+          <div>
+            <h3>Flexible Integrations</h3>
+            <p class="muted">Connect tools you already use with simple webhooks and APIs.</p>
+          </div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="ic">📈</div>
+          <div>
+            <h3>Built-in Analytics</h3>
+            <p class="muted">Privacy-friendly metrics to track growth and engagement.</p>
+          </div>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="ic">🧩</div>
+          <div>
+            <h3>Component Library</h3>
+            <p class="muted">Reusable UI components and templates to accelerate development.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES & PRICING -->
+    <section id="services" class="section container" aria-labelledby="services-heading">
+      <h2 id="services-heading">Services & Pricing</h2>
+      <p class="muted">Pick a plan that scales with your team — toggle for monthly or annual billing.</p>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;flex-wrap:wrap;gap:12px">
+        <div class="pricing-toggle">
+          <div class="small-muted">Monthly</div>
+          <div id="billingSwitch" class="switch" role="switch" aria-checked="false" tabindex="0">
+            <div class="dot"></div>
+          </div>
+          <div class="small-muted">Yearly <span class="muted" style="font-size:12px;margin-left:6px">— Save 20%</span></div>
+        </div>
+
+        <div class="small-muted">Need enterprise? <a href="#contact" style="color:var(--accent-2);text-decoration:underline">Contact Sales</a></div>
+      </div>
+
+      <div class="pricing-grid" id="pricingGrid">
+        <div class="price-card fade-up">
+          <h3>Starter</h3>
+          <div class="price" data-monthly="19" data-yearly="162">$19<span class="small-muted">/mo</span></div>
+          <p class="muted">Great for solo builders & small projects.</p>
+          <ul class="muted">
+            <li>1 Project</li>
+            <li>Basic analytics</li>
+            <li>Email support</li>
+          </ul>
+          <div style="margin-top:auto"><button class="btn primary">Choose Starter</button></div>
+        </div>
+
+        <div class="price-card fade-up">
+          <h3>Team</h3>
+          <div class="price" data-monthly="49" data-yearly="490">$49<span class="small-muted">/mo</span></div>
+          <p class="muted">Ideal for small teams.</p>
+          <ul class="muted">
+            <li>10 Projects</li>
+            <li>Collaborative tools</li>
+            <li>Priority support</li>
+          </ul>
+          <div style="margin-top:auto"><button class="btn primary">Choose Team</button></div>
+        </div>
+
+        <div class="price-card fade-up">
+          <h3>Enterprise</h3>
+          <div class="price" data-monthly="199" data-yearly="1990">$199<span class="small-muted">/mo</span></div>
+          <p class="muted">Custom solutions for large orgs.</p>
+          <ul class="muted">
+            <li>Unlimited projects</li>
+            <li>SSO, SLAs</li>
+            <li>Dedicated support</li>
+          </ul>
+          <div style="margin-top:auto"><button class="btn primary">Contact Sales</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section container" aria-labelledby="testimonials-heading">
+      <h2 id="testimonials-heading">What customers say</h2>
+      <p class="muted">Real feedback from product teams using NovaStudio.</p>
+
+      <div class="testimonials" style="margin-top:18px">
+        <div class="test-list" id="testList" aria-live="polite">
+          <div class="test-item fade-up">
+            <strong>“Transformed our onboarding — conversion increased 32%”</strong>
+            <div class="muted" style="margin-top:8px">— Sarah K, Head of Product @ FinWay</div>
+          </div>
+          <div class="test-item fade-up">
+            <strong>“The design system saved us months of work.”</strong>
+            <div class="muted" style="margin-top:8px">— Raj P, Design Lead @ Buildly</div>
+          </div>
+          <div class="test-item fade-up">
+            <strong>“Quick integration & fantastic support.”</strong>
+            <div class="muted" style="margin-top:8px">— Maria L, CTO @ HealthSpace</div>
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button class="btn ghost" id="prevTest">‹ Prev</button>
+          <button class="btn ghost" id="nextTest">Next ›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio / Projects -->
+    <section id="portfolio" class="section container" aria-labelledby="portfolio-heading">
+      <h2 id="portfolio-heading">Selected Work</h2>
+      <p class="muted">A small selection of recent projects — filter by type.</p>
+
+      <div class="portfolio-controls" style="margin-top:12px">
+        <div class="chip active" data-filter="all">All</div>
+        <div class="chip" data-filter="web">Websites</div>
+        <div class="chip" data-filter="product">Product</div>
+        <div class="chip" data-filter="branding">Branding</div>
+      </div>
+
+      <div class="portfolio-grid" id="portfolioGrid">
+        <div class="portfolio-card" data-type="web">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=6f1c2b5b1b3f9b8b9b9a9b6cae2a2d7b" alt="Project 1">
+          <div class="caption">Ecommerce redesign</div>
+        </div>
+        <div class="portfolio-card" data-type="product">
+          <img src="https://images.unsplash.com/photo-1587614382346-4ecb8b76d7a3?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=abcdabcdabcdabcdabcdabcd12345678" alt="Project 2">
+          <div class="caption">Mobile app prototype</div>
+        </div>
+        <div class="portfolio-card" data-type="branding">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=efefefefefefefefefefefefabcd1234" alt="Project 3">
+          <div class="caption">Brand identity</div>
+        </div>
+        <div class="portfolio-card" data-type="web">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=abcabcabcabcabcabcabcabcabcabcab" alt="Project 4">
+          <div class="caption">SaaS landing</div>
+        </div>
+        <div class="portfolio-card" data-type="product">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=11111111111111111111111111111111" alt="Project 5">
+          <div class="caption">Dashboard & reporting</div>
+        </div>
+        <div class="portfolio-card" data-type="branding">
+          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=22222222222222222222222222222222" alt="Project 6">
+          <div class="caption">Campaign creative</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="section container" aria-labelledby="team-heading">
+      <h2 id="team-heading">Meet the team</h2>
+      <p class="muted">A small group of makers, designers, and engineers.</p>
+
+      <div class="team-grid" style="margin-top:16px">
+        <div class="member fade-up">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=aaaaaa" alt="Member" style="width:80px;height:80px;border-radius:999px;object-fit:cover;margin:0 auto 8px">
+          <div style="font-weight:700">Aisha Gomez</div>
+          <div class="muted">Founder & CEO</div>
+        </div>
+        <div class="member fade-up">
+          <img src="https://images.unsplash.com/photo-1545996124-1b1f69b5a2ec?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=bbbbbb" alt="Member" style="width:80px;height:80px;border-radius:999px;object-fit:cover;margin:0 auto 8px">
+          <div style="font-weight:700">Theo Barnes</div>
+          <div class="muted">Design Lead</div>
+        </div>
+        <div class="member fade-up">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=cccccc" alt="Member" style="width:80px;height:80px;border-radius:999px;object-fit:cover;margin:0 auto 8px">
+          <div style="font-weight:700">Ravi Patel</div>
+          <div class="muted">Engineering</div>
+        </div>
+        <div class="member fade-up">
+          <img src="https://images.unsplash.com/photo-1545996124-1b1f69b5a2ec?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=dddddd" alt="Member" style="width:80px;height:80px;border-radius:999px;object-fit:cover;margin:0 auto 8px">
+          <div style="font-weight:700">Marta I.</div>
+          <div class="muted">Customer Success</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog & Newsletter -->
+    <section id="blog" class="section container" aria-labelledby="blog-heading">
+      <h2 id="blog-heading">From the blog</h2>
+      <p class="muted">Articles on product, design, and growth.</p>
+
+      <div class="grid-2" style="margin-top:16px">
+        <div class="card fade-up" style="padding:18px">
+          <h3>Design systems that scale</h3>
+          <div class="muted">6 min read • Aug 2025</div>
+          <p class="muted" style="margin-top:8px">How to build reusable primitives and tokens to speed up your team's workflow.</p>
+          <div style="margin-top:12px"><button class="btn ghost">Read article</button></div>
+        </div>
+
+        <aside class="card fade-up" style="padding:18px">
+          <h3>Join our newsletter</h3>
+          <p class="muted">Weekly insights on product design and web performance.</p>
+
+          <div class="newsletter" style="margin-top:12px">
+            <input type="email" id="newsletterEmail" placeholder="Your email" aria-label="Newsletter email" />
+            <button class="btn primary" id="subscribeBtn">Subscribe</button>
+          </div>
+          <div class="small-muted" style="margin-top:10px">No spam — unsubscribe anytime.</div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section container" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently asked</h2>
+      <p class="muted">Common questions about pricing, onboarding and security.</p>
+
+      <div style="margin-top:12px;max-width:900px">
+        <div class="faq-item">
+          <div class="faq-head" onclick="toggleFaq(this)">
+            <div><strong>How long is the free trial?</strong></div>
+            <div class="muted">+</div>
+          </div>
+          <div class="faq-body muted">Our standard free trial is 14 days with full access to Team features.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-head" onclick="toggleFaq(this)">
+            <div><strong>Do you offer discounts for startups?</strong></div>
+            <div class="muted">+</div>
+          </div>
+          <div class="faq-body muted">Yes — we offer startup credits and discounted annual plans. Reach out to sales for details.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-head" onclick="toggleFaq(this)">
+            <div><strong>Can I migrate data later?</strong></div>
+            <div class="muted">+</div>
+          </div>
+          <div class="faq-body muted">Absolutely, our platform supports data export and guided migration assistance.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section container" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact us</h2>
+      <p class="muted">We'd love to hear about your project. Tell us what's on your mind.</p>
+
+      <div class="contact-grid" style="margin-top:16px">
+        <form class="contact-card" id="contactForm" onsubmit="submitContact(event)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <input type="text" name="name" placeholder="Full name" required />
+            <input type="email" name="email" placeholder="Email address" required />
+          </div>
+          <input type="text" name="company" placeholder="Company (optional)" />
+          <textarea name="message" rows="6" placeholder="How can we help?" required></textarea>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn primary" type="submit">Send message</button>
+            <button class="btn ghost" type="button" onclick="document.getElementById('contactForm').reset()">Reset</button>
+          </div>
+          <div class="small-muted" style="margin-top:8px">We respond within 1 business day.</div>
+        </form>
+
+        <aside class="contact-card">
+          <h4>Office</h4>
+          <div class="muted">123 Nova St, Suite 500<br>San Francisco, CA</div>
+
+          <h4 style="margin-top:12px">Email</h4>
+          <div><a href="mailto:hello@novastudio.com" style="color:var(--accent-2)">hello@novastudio.com</a></div>
+
+          <h4 style="margin-top:12px">Phone</h4>
+          <div class="muted">+1 (555) 123-4567</div>
+
+          <div style="margin-top:20px" class="small-muted">We’re happy to run an intro call to scope your project.</div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer container center" role="contentinfo" aria-label="Footer">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div class="muted">© 2025 NovaStudio • Crafted with care</div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <a href="#" class="muted">Privacy</a>
+          <a href="#" class="muted">Terms</a>
+          <a href="#" class="muted">Status</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- =========================
+       JAVASCRIPT
+       ========================= -->
+  <script>
+    // Simple utilities & initial state
+    (function(){
+      // Polyfill for prefers-color-scheme detection & persisted theme
+      const root = document.documentElement;
+      const themeToggle = document.getElementById('themeToggle');
+      const saved = localStorage.getItem('ns_theme'); // 'light' or 'dark'
+
+      function applyTheme(t){
+        if(t === 'light'){ root.classList.add('light'); themeToggle.textContent = '☀️'; themeToggle.setAttribute('aria-pressed','true'); }
+        else { root.classList.remove('light'); themeToggle.textContent = '🌙'; themeToggle.setAttribute('aria-pressed','false'); }
+        localStorage.setItem('ns_theme', t);
+      }
+
+      // default based on saved or system
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      applyTheme(saved || (prefersLight ? 'light' : 'dark'));
+
+      themeToggle.addEventListener('click', ()=> applyTheme(root.classList.contains('light') ? 'dark' : 'light'));
+
+      // Mobile menu toggle: create a simple overlay nav
+      const menuToggle = document.getElementById('menuToggle');
+      menuToggle.addEventListener('click', openMobileMenu);
+
+      function openMobileMenu(){
+        // create overlay
+        if(document.getElementById('mobileNav')){ document.getElementById('mobileNav').remove(); return; }
+        const overlay = document.createElement('div'); overlay.id='mobileNav';
+        overlay.style.position='fixed'; overlay.style.inset='0'; overlay.style.zIndex=200; overlay.style.background='rgba(2,6,23,0.6)'; overlay.style.display='flex'; overlay.style.justifyContent='center'; overlay.style.padding='40px';
+        overlay.innerHTML = '<div style="width:100%;max-width:420px;background:var(--card);padding:20px;border-radius:12px;border:1px solid var(--glass-border)">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div style="font-weight:800">Menu</div><button aria-label="Close" style="background:transparent;border:none;color:var(--muted);font-size:18px" id="closeMenu">✕</button></div>' +
+          '<nav style="display:flex;flex-direction:column;gap:8px"><a href="#home">Home</a><a href="#features">Features</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#portfolio">Portfolio</a><a href="#blog">Blog</a><a href="#contact">Contact</a></nav></div>';
+        document.body.appendChild(overlay);
+        document.getElementById('closeMenu').addEventListener('click', ()=> overlay.remove());
+        overlay.addEventListener('click', (e)=>{ if(e.target === overlay) overlay.remove(); });
+      }
+
+      // Smooth scroll polyfill for anchors
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', function(e){
+          const target = document.querySelector(this.getAttribute('href'));
+          if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); if(document.getElementById('mobileNav')) document.getElementById('mobileNav').remove(); }
+        });
+      });
+
+      // Reveal animations: observe elements with .fade-up .fade-up.visible
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry => {
+          if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+        });
+      }, {threshold:0.12});
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+      // Pricing switch logic (monthly/yearly)
+      const billingSwitch = document.getElementById('billingSwitch');
+      let yearly = false;
+      billingSwitch.addEventListener('click', toggleBilling);
+      billingSwitch.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); toggleBilling(); } });
+
+      function toggleBilling(){
+        yearly = !yearly;
+        billingSwitch.classList.toggle('on', yearly);
+        billingSwitch.setAttribute('aria-checked', String(yearly));
+        // update prices
+        document.querySelectorAll('.price').forEach(el=>{
+          const monthly = el.getAttribute('data-monthly');
+          const yearly = el.getAttribute('data-yearly');
+          if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+            el.textContent = `$${yearly}` + (yearly ? '' : ''); // fallback
+          } else {
+            if(billingSwitch.classList.contains('on')){
+              el.innerHTML = `$${el.getAttribute('data-yearly')}<small class="small-muted">/yr</small>`;
+            } else {
+              el.innerHTML = `$${el.getAttribute('data-monthly')}<small class="small-muted">/mo</small>`;
+            }
+          }
+        });
+      }
+
+      // Testimonials carousel simple controls
+      const testList = document.getElementById('testList');
+      const tests = Array.from(testList.children);
+      let testIndex = 0;
+      document.getElementById('nextTest').addEventListener('click', ()=> { testIndex = Math.min(testIndex+1, tests.length-1); scrollTest(); });
+      document.getElementById('prevTest').addEventListener('click', ()=> { testIndex = Math.max(testIndex-1, 0); scrollTest(); });
+
+      function scrollTest(){ tests[testIndex].scrollIntoView({behavior:'smooth',inline:'center'}); }
+
+      // Portfolio filter
+      document.querySelectorAll('.chip').forEach(chip=>{
+        chip.addEventListener('click', ()=> {
+          document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+          chip.classList.add('active');
+          const filter = chip.getAttribute('data-filter');
+          document.querySelectorAll('#portfolioGrid .portfolio-card').forEach(card=>{
+            if(filter === 'all' || card.getAttribute('data-type') === filter) card.style.display = '';
+            else card.style.display = 'none';
+          });
+        });
+      });
+
+      // FAQ toggle
+      window.toggleFaq = function(headEl){
+        const item = headEl.parentElement;
+        item.classList.toggle('open');
+      }
+
+      // Contact form (client-side demo)
+      window.submitContact = function(e){
+        e.preventDefault();
+        const form = e.target;
+        const data = new FormData(form);
+        const name = data.get('name'), email = data.get('email'), message = data.get('message');
+        if(!name || !email || !message){ alert('Please complete the form.'); return; }
+        // simulate sending
+        const btn = form.querySelector('button[type=submit]');
+        const original = btn.innerHTML;
+        btn.innerHTML = 'Sending...';
+        btn.disabled = true;
+        setTimeout(()=> {
+          btn.innerHTML = original;
+          btn.disabled = false;
+          form.reset();
+          alert('Thanks — we received your message. We’ll get back within 1 business day.');
+        }, 900);
+      }
+
+      // Newsletter subscription
+      document.getElementById('subscribeBtn').addEventListener('click', ()=>{
+        const email = document.getElementById('newsletterEmail').value;
+        if(!email || !email.includes('@')){ alert('Please enter a valid email'); return; }
+        document.getElementById('subscribeBtn').disabled = true;
+        document.getElementById('subscribeBtn').innerText = 'Subscribing...';
+        setTimeout(()=> {
+          document.getElementById('subscribeBtn').innerText = 'Subscribed';
+          document.getElementById('subscribeBtn').disabled = false;
+          document.getElementById('newsletterEmail').value = '';
+          alert('Subscribed — check your inbox for a welcome email (demo).');
+        }, 800);
+      });
+
+      // Demo signup
+      window.signup = function(){
+        alert('Thanks! We will reach out to schedule your demo (this is a demo action).');
+      };
+
+      // Simple accessible focus for dynamic mobile nav (close with Esc)
+      window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ const m = document.getElementById('mobileNav'); if(m) m.remove(); } });
+
+      // initial render: set prices to monthly
+      document.querySelectorAll('.price').forEach(el=>{
+        el.innerHTML = `$${el.getAttribute('data-monthly')}<small class="small-muted">/mo</small>`;
+      });
+
+      // make images lazy-load friendly
+      document.querySelectorAll('img').forEach(img => img.loading = 'lazy');
+
+    })();
+  </script>
+</body>
+</html>
